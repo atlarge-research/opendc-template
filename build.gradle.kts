@@ -30,3 +30,14 @@ tasks.shadowJar {
         exclude("org.opendc:opendc-harness-junit5")
     }
 }
+
+tasks.register<Test>("experiment") {
+    // Ensure JUnit Platform is used for resolving tests
+    useJUnitPlatform()
+
+    description = "Runs OpenDC experiments"
+    group = "application"
+
+    testClassesDirs = sourceSets["main"].output.classesDirs
+    classpath = sourceSets["main"].runtimeClasspath
+}
